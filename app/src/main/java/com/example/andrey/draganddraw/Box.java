@@ -1,9 +1,12 @@
 package com.example.andrey.draganddraw;
 
 import android.graphics.PointF;
+import android.os.Bundle;
+
+import java.io.Serializable;
 
 //класс с именем Box для хранения данных, определяющих прямоугольник.
-public class Box {
+public class Box implements Serializable {
     private PointF mCurrent;
     private PointF mOrigin;
 
@@ -12,11 +15,11 @@ public class Box {
         this.mCurrent = origin;
     }
 
-    public PointF getmCurrent() {
+    public PointF getCurrent() {
         return mCurrent;
     }
 
-    public PointF getmOrigin() {
+    public PointF getOrigin() {
         return mOrigin;
     }
 
