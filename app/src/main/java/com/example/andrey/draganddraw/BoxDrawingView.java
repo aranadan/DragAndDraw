@@ -27,9 +27,10 @@ public class BoxDrawingView extends View {
 
 
     /*MotionEvent — класс, описывающий событие
-    касания, включая его позицию и действие*/
+        касания, включая его позицию и действие*/
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+
         //координаты X и Y упаковываются в объекте PointF
         PointF current = new PointF(event.getX(), event.getY());
         String action = "";
@@ -104,9 +105,10 @@ public class BoxDrawingView extends View {
         }
     }
 
-// застрял здесь на странице 619
+// если не присвоить представлению ИД, методы onSaveInstanceState и onRestoreInstanceState не работают
     @Override
     protected Parcelable onSaveInstanceState() {
+        Log.d(TAG, "onSaveInstanceState");
         Parcelable superState = super.onSaveInstanceState();
         SavedState ss = new SavedState(superState);
         ss.mBoxList = mBoxen;
@@ -115,16 +117,26 @@ public class BoxDrawingView extends View {
 
     @Override
     protected void onRestoreInstanceState(Parcelable state) {
+        Log.d(TAG, "onRestoreInstanceState");
+        //сохраняю состояние представления
         SavedState ss = (SavedState) state;
         super.onRestoreInstanceState(ss.getSuperState());
-        mBoxen = ss.mBoxList;
+        ss.setmBoxList(mBoxen);
     }
 
     private static class SavedState extends BaseSavedState {
-        private List<Box> mBoxList ;
+        private List<Box> mBoxList;
 
         public SavedState(Parcelable superState) {
             super(superState);
         }
+        public List<Box> getmBoxList() {
+            return mBoxList;
+        }
+
+        public void setmBoxList(List<Box> mBoxList) {
+            this.mBoxList = mBoxList;
+        }
+
     }
 }
