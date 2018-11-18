@@ -2,6 +2,8 @@ package com.example.andrey.draganddraw;
 
 import android.graphics.PointF;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 
 import java.io.Serializable;
 
